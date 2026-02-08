@@ -68,7 +68,7 @@ class Solution :
         n = len(numbers)
         i,j = 0,n-1
 
-        while i < j:
+        while i < j:                            #--> same as that for range
             s = numbers[i] + numbers[j]
             if s > target :
                 j-=1
@@ -90,7 +90,7 @@ class MoveZero :
         start = 0  # start is for keeping 
         n = len(nums)
 
-        for i in range(n):   # starts from the 0 
+        for i in range(n):   # starts from the 0 ,,,,,,,,,,,,,0 se n-1
             if nums[i] !=0 :
                 # swap it if it is non zero element 
                 nums[i], nums[start] = nums[start], nums[i]
@@ -117,30 +117,183 @@ class Solution1 :
 """
 
 
-# Valid Palindrome (Two pointer) HARD :- 
-# class Solution2 :
-#     def isAlpha(self,s,i):
-#         x = ord(s[i]) # function for calculating the ascii value
+"""
+Valid Palindrome (Two pointer) HARD :- 
+class Solution2 :
+    def isAlpha(self,s,i):
+        x = ord(s[i]) # function for calculating the ascii value
 
-#         if 97<=x<=122 or 48<=x<=57:
-#             return True
-#         else :
-#             return False
+        if 97<=x<=122 or 48<=x<=57:
+            return True
+        else :
+            return False
 
-#     def isPalindrome(self, s:str) -> bool:
-#         s = s.lower()
+    def isPalindrome(self, s:str) -> bool:
+        s = s.lower()
+        n = len(s)
+        i ,j = 0,n-1
+
+        if not self.isAlpha(s,i):
+            i+=1
+            continue
+        if not self.isAlpha(s,j):
+            j+=1
+            continue
+
+        if s[i]==s[j]:
+            i+=1
+            j-=1
+        else :
+            return False
+
+"""
+# chars = ["h","e","l","l","o"]
+# # Output → ["o","l","l","e","h"]
+
+from typing import List
+
+# class Solution:
+#     def reverseString(self, s: List[str]) -> None:
 #         n = len(s)
-#         i ,j = 0,n-1
+#         i,j = 0,n-1
 
-#         if not self.isAlpha(s,i):
-#             i+=1
-#             continue
-#         if not self.isAlpha(s,j):
-#             j+=1
-#             continue
+#         for i in range(n):
+            
+"""
+✅ Q2. Remove Element (Two Pointer – like Move Zero)
+👉 Remove all occurrences of val in-place.
+nums = [3,2,2,3]
+val = 3
+Final array should contain only non-3 elements in front.
+👉 Very similar to your MoveZero.
+"""
 
-#         if s[i]==s[j]:
-#             i+=1
-#             j-=1
-#         else :
-#             return False
+print("\n\t [2, 2] \n\t")
+
+from typing import List
+class Solution:
+    def remElement(self, nums: List[int], val: int) -> List[int]:
+        # Use list comprehension for simplicity
+        nums = [x for x in nums if x != val]
+        return nums
+
+s = Solution()
+nums = [3, 2, 2, 3]
+val = 3
+result = s.remElement(nums, val)
+print(result)   # Output: [2, 2]
+
+print("\n\t Even Numbers front \n\t")
+
+"""
+✅ Q5. Move all even numbers to front (in-place)
+nums = [1,2,3,4,5,6]
+Result (order doesn't matter):
+[2,4,6, ?, ?, ?]
+
+"""
+
+class Solution1 :
+    def MoveEven(self, even:List[int]) -> List[int] :   # even = [1,2,3,4,5,6]
+        n = len(even)
+        i,j = 0,n-1
+        start = 0
+        for i in range(n):
+            if even[i] % 2 == 0 :
+                even[i],even[start] = even[start],even[i]
+                start+=1
+
+s1 = Solution1()    
+even = [1,2,3,4,5,6]
+s1.MoveEven(even)
+print(even)
+
+
+"""
+✅ Q3. Squares of a Sorted Array (Two Pointer)
+👉 Given a sorted array (can have negatives):
+nums = [-4,-1,0,3,10]
+Return:
+[0,1,9,16,100]                          --------------------> Remaining
+⚠️ But do it using
+"""
+
+
+print("\n\t [2,7] \n\t")
+
+"""
+👉 Two pointer + swap logic.
+✅ Q6. Two Sum II – but return values, not indexes
+(variation of your first code)
+numbers = [2,7,11,15]
+target = 9
+Return:
+[2,7]
+Not indexes
+"""
+
+class Solution4:
+    def addswap(self, numbers : List[int], target :int) -> List[int]:
+        n = len(numbers)
+        i,j = 0 ,n-1
+
+        # for i in range is wrong here -> as it also increments the i here and you are also incrementing the i in the program
+        while i < j :   # ex :- 0 < 4   
+        
+            s = numbers[i] + numbers[j]
+            if s > target :
+                j-=1
+            elif s < target :
+                i+=1
+            else :
+                return [numbers[i], numbers[j]]
+
+s4 = Solution4()
+numbers = [2,7,11,15]
+target = 9
+print(s4.addswap(numbers,target))
+
+#======================================================================================================================================
+
+"""
+Find Pivot Index (Post prefix Method):- 
+"""
+class Pivot :
+    def PiovotIndex(self, nums :List[int]) -> int:
+        n = len(nums)
+        total_sum = sum(nums)
+        left_sum = 0
+
+        for i in range(n):
+            right_sum = total_sum - left_sum - nums[i]
+            if left_sum == right_sum:
+                return i
+            left_sum+=nums[i]
+        return -1
+    
+pi = Pivot()
+nums = [1,7,3,6,5,6]
+print(pi.PiovotIndex(nums))
+
+"""
+Remove Duplicates from Sorted Array :- 
+✅ Q2. Remove Duplicates from Sorted Array
+nums = [1,1,2,2,3]
+Make first part:
+[1,2,3]
+👉 return new length
+
+class Remove:
+    def RemoveDuplicate(self, nums :List[int]) -> List[int]:
+        n = len(nums)
+        # i,j = 0, n-1
+        start = 0
+
+        for i in range(n) :
+            if 
+
+"""
+
+"""
+Print Matrix in Spiral Order :- 
+"""
