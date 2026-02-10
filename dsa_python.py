@@ -147,111 +147,6 @@ class Solution2 :
             return False
 
 """
-# chars = ["h","e","l","l","o"]
-# # Output → ["o","l","l","e","h"]
-
-from typing import List
-
-# class Solution:
-#     def reverseString(self, s: List[str]) -> None:
-#         n = len(s)
-#         i,j = 0,n-1
-
-#         for i in range(n):
-            
-"""
-✅ Q2. Remove Element (Two Pointer – like Move Zero)
-👉 Remove all occurrences of val in-place.
-nums = [3,2,2,3]
-val = 3
-Final array should contain only non-3 elements in front.
-👉 Very similar to your MoveZero.
-"""
-
-print("\n\t [2, 2] \n\t")
-
-from typing import List
-class Solution:
-    def remElement(self, nums: List[int], val: int) -> List[int]:
-        # Use list comprehension for simplicity
-        nums = [x for x in nums if x != val]
-        return nums
-
-s = Solution()
-nums = [3, 2, 2, 3]
-val = 3
-result = s.remElement(nums, val)
-print(result)   # Output: [2, 2]
-
-print("\n\t Even Numbers front \n\t")
-
-"""
-✅ Q5. Move all even numbers to front (in-place)
-nums = [1,2,3,4,5,6]
-Result (order doesn't matter):
-[2,4,6, ?, ?, ?]
-
-"""
-
-class Solution1 :
-    def MoveEven(self, even:List[int]) -> List[int] :   # even = [1,2,3,4,5,6]
-        n = len(even)
-        i,j = 0,n-1
-        start = 0
-        for i in range(n):
-            if even[i] % 2 == 0 :
-                even[i],even[start] = even[start],even[i]
-                start+=1
-
-s1 = Solution1()    
-even = [1,2,3,4,5,6]
-s1.MoveEven(even)
-print(even)
-
-
-"""
-✅ Q3. Squares of a Sorted Array (Two Pointer)
-👉 Given a sorted array (can have negatives):
-nums = [-4,-1,0,3,10]
-Return:
-[0,1,9,16,100]                          --------------------> Remaining
-⚠️ But do it using
-"""
-
-
-print("\n\t [2,7] \n\t")
-
-"""
-👉 Two pointer + swap logic.
-✅ Q6. Two Sum II – but return values, not indexes
-(variation of your first code)
-numbers = [2,7,11,15]
-target = 9
-Return:
-[2,7]
-Not indexes
-"""
-
-class Solution4:
-    def addswap(self, numbers : List[int], target :int) -> List[int]:
-        n = len(numbers)
-        i,j = 0 ,n-1
-
-        # for i in range is wrong here -> as it also increments the i here and you are also incrementing the i in the program
-        while i < j :   # ex :- 0 < 4   
-        
-            s = numbers[i] + numbers[j]
-            if s > target :
-                j-=1
-            elif s < target :
-                i+=1
-            else :
-                return [numbers[i], numbers[j]]
-
-s4 = Solution4()
-numbers = [2,7,11,15]
-target = 9
-print(s4.addswap(numbers,target))
 
 #======================================================================================================================================
 
@@ -295,5 +190,78 @@ class Remove:
 """
 
 """
-Print Matrix in Spiral Order :- 
+Print Matrix in Spiral Order :-   ------> remaining
 """
+
+# calculating the frequency :
+list1 = [2,3,4,1,2,3,4,5,4,3,2]
+freq = {}
+
+for i in list1:
+    if i in freq:
+        freq[i] += 1
+    else :
+        freq[i] = 1
+
+for i in freq:
+    print(F" {i} is present {freq[i]} times")
+
+
+"""
+Sorted Array -> Two pointer can be used coz we know the target value acc to that we can shift the right/left pointer 
+Tow Sum :- Array is Unsorted -> Hashing 
+"""
+
+
+print("\n\t Sliding Widow problems \n\t")
+
+# Sliding Widow problems :- 
+# calculating the max avg of sub array :- 
+
+class Window1 :
+    def avgsub(self,nums : List[int], k: int) -> int:
+        n = len(nums)
+        curr_sum = 0
+
+        for i in range(n):
+            curr_sum+= nums[i]
+        
+        ans = curr_sum  / k
+
+        for i in range(k,n):
+            curr_sum += nums[i]
+            curr_sum -= nums[i-k]
+
+            ans = max(ans,curr_sum / k)
+
+        return ans
+w = Window1()
+nums = [1,12,-5,-6,50,3]
+print(w.avgsub(nums,4))
+
+"""
+✅ Q9. Longest substring without repeating characters
+(Sliding window – variable size)
+s = "abcabcbb"
+"""
+
+class Substring :
+    def longString(self, s :str)  -> int:
+        n = len(s)
+        if s <=1 :
+            return n
+        
+        i , j = 0 , 1
+        set1 = set({})
+        set1.add(s[0])
+        ans = 1
+
+        while j < n:
+            while s[j] in set1:
+                set1..discard(s[i])
+                i+=1
+            
+            set1.add(s[j])
+            j+=1
+            ans = max(ans,(j-i))
+
