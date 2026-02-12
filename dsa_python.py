@@ -240,7 +240,7 @@ nums = [1,12,-5,-6,50,3]
 print(w.avgsub(nums,4))
 
 """
-✅ Q9. Longest substring without repeating characters
+✅ Q9. Longest substring without repeating characters                     # LC-> 3
 (Sliding window – variable size)
 s = "abcabcbb"
 """
@@ -248,7 +248,7 @@ s = "abcabcbb"
 class Substring :
     def longString(self, s :str)  -> int:
         n = len(s)
-        if s <=1 :
+        if n <= 1 :
             return n
         
         i , j = 0 , 1
@@ -258,10 +258,24 @@ class Substring :
 
         while j < n:
             while s[j] in set1:
-                set1..discard(s[i])
+                set1.discard(s[i])
                 i+=1
             
             set1.add(s[j])
             j+=1
             ans = max(ans,(j-i))
+        return ans
 
+st = Substring()
+s = "abcadbac"
+print(st.longString(s))
+
+
+"""
+Kadane's Algorithm :- 
+Maximium Subarray :- LC ->> 53 
+"""
+
+# class Kadane:
+#     def maxSubarray(self, nums : List[int]) -> List[int] :
+        
