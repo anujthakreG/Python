@@ -278,4 +278,126 @@ Maximium Subarray :- LC ->> 53
 
 # class Kadane:
 #     def maxSubarray(self, nums : List[int]) -> List[int] :
+
+# repeat 
+"""
+Valid Palindrome (Two pointer) HARD :- 
+class Solution2 :
+    def isAlpha(self,s,i):
+        x = ord(s[i]) # function for calculating the ascii value
+
+        if 97<=x<=122 or 48<=x<=57:
+            return True
+        else :
+            return False
+
+    def isPalindrome(self, s:str) -> bool:
+        s = s.lower()
+        n = len(s)
+        i ,j = 0,n-1
+
+        if not self.isAlpha(s,i):
+            i+=1
+            continue
+        if not self.isAlpha(s,j):
+            j+=1
+            continue
+
+        if s[i]==s[j]:
+            i+=1
+            j-=1
+        else :
+            return False
+
+"""
+
+#======================================================================================================================================
+
+"""
+Find Pivot Index (Post prefix Method):- 
+"""
+class Pivot :
+    def PiovotIndex(self, nums :List[int]) -> int:
+        n = len(nums)
+        total_sum = sum(nums)
+        left_sum = 0
+
+        for i in range(n):
+            right_sum = total_sum - left_sum - nums[i]
+            if left_sum == right_sum:
+                return i
+            left_sum+=nums[i]
+        return -1
+    
+pi = Pivot()
+nums = [1,7,3,6,5,6]
+print(pi.PiovotIndex(nums))
+
+"""
+Remove Duplicates from Sorted Array :- 
+✅ Q2. Remove Duplicates from Sorted Array
+nums = [1,1,2,2,3]
+Make first part:
+[1,2,3]
+👉 return new length
+
+class Remove:
+    def RemoveDuplicate(self, nums :List[int]) -> List[int]:
+        n = len(nums)
+        # i,j = 0, n-1
+        start = 0
+
+        for i in range(n) :
+            if 
+
+"""
+
+"""
+Print Matrix in Spiral Order :-   ------> remaining
+"""
+
+# calculating the frequency :
+list1 = [2,3,4,1,2,3,4,5,4,3,2]
+freq = {}
+
+for i in list1:
+    if i in freq:
+        freq[i] += 1
+    else :
+        freq[i] = 1
+
+for i in freq:
+    print(F" {i} is present {freq[i]} times")
+
+
+"""
+Sorted Array -> Two pointer can be used coz we know the target value acc to that we can shift the right/left pointer 
+Tow Sum :- Array is Unsorted -> Hashing 
+"""
+
+
+print("\n\t Sliding Widow problems \n\t")
+
+# Sliding Widow problems :- 
+# calculating the max avg of sub array :- 
+
+class Window1 :
+    def avgsub(self,nums : List[int], k: int) -> int:
+        n = len(nums)
+        curr_sum = 0
+
+        for i in range(n):
+            curr_sum+= nums[i]
         
+        ans = curr_sum  / k
+
+        for i in range(k,n):
+            curr_sum += nums[i]
+            curr_sum -= nums[i-k]
+
+            ans = max(ans,curr_sum / k)
+
+        return ans
+w = Window1()
+nums = [1,12,-5,-6,50,3]
+print(w.avgsub(nums,4))
