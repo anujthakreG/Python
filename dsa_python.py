@@ -308,5 +308,103 @@ class fib :
         return self.fibonaci(n-1) + self.fibonaci(n-2)
 
 """
-Sorting and Searching :- 
+Sorting and Searching :- starting from the playlist 
 """
+# nums.sort() return nums -> in python you can simply sort list by this 
+
+"""
+# BUBBLE SORT :- nahi hone wala case likh do then do swapping                      -> LC 912
+"""
+# SC :- O(1)
+# TC :- O(n^2) / bestcase(n) 
+# for i in range(n):              # outer loop
+#     for j in range(n-i-1):      # inner loop
+#         if nums[j] > nums[j+1]:
+#             temp = nums[j]
+#             nums[j] = nums[j+1]
+#             nums[j+1] = temp
+# after the j=0 {first iteration} -> j loop will only run until it get finished then i=1 
+# therefore outer loop just defines that the last number is sorted dont touch it and the inner loops just swaps the rest unsorted value 
+
+"""
+INSERTION SORT 
+3281764
+""" 
+from typing import List
+
+class InsertionSort:
+    def isort(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        for i in range(1, n):
+            key = nums[i]
+            j = i - 1
+
+            while j >= 0 and nums[j] > key:
+                nums[j + 1] = nums[j]
+                j -= 1
+            nums[j + 1] = key
+
+        return nums
+
+ 
+# Selection Sort Remaining
+
+
+# Merge Sort 
+class MergeSortSolution:
+    def merge(self,nums,l,mid,r): # you have to make two array for it 
+        a = []
+        b = []
+
+        for i in range(l,mid+1):
+            a.append(nums[i])
+        for b in range(mid+1,r):
+            b.append(nums[i])
+
+        i,j,k = 0,0,r
+        while k<= r:
+            if j == len(b):
+                nums[k] = a[i]
+                i+=1
+                k+=1
+            elif i == len(a):
+                nums[k] = b[j]
+                j+=1
+                k+=1
+            if a[i]<b[j]:
+                nums[k] = a[i]
+                i+=1
+                k+=1
+            else :
+                nums[k] = b[j]
+                j+=1
+                k+=1
+    def mergesort(self, nums, l, r):
+
+        # base case :- 
+        if l >= r : 
+            return 
+        mid = (l+r)//2
+
+        # recurrsive case :-
+        self.mergesort(nums,l,mid)
+        self.mergesort(nums,mid+1,r)   # iske baad ki line tab hi chalegi when the base case will be executed 
+        self.merge(nums,l,mid,r)
+    def ms(self, nums :List[int]) -> List[int]:
+        n = len(nums)
+
+
+numm = [5,1,6,2,4,3]
+# l = numm[0] # by this you access the element 
+# l = 0 # this is the index value 
+# r = numm[5]
+# mid = (l+r)//2
+# print(mid)
+
+"""
+Quick Sort
+"""
+
+class QuicksortSolution(
+    
+)
